@@ -2,6 +2,7 @@ package gouidom
 
 import (
 	"fmt"
+	"html"
 	"path"
 	"sort"
 	"strings"
@@ -152,7 +153,9 @@ func (v *VDOM) GetAppStyle() string {
 }
 
 func (v *VDOM) GetHTMLDocument() string {
-	return v.vd["html"].jsValue.Get("documentElement").Get("outerHTML").String()
+	pageText := v.vd["html"].jsValue.Get("documentElement").Get("outerHTML").String()
+	escaped := html.EscapeString(pageText)
+	return escaped
 }
 
 func TagCSSBlock(tagName string) string {
