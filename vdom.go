@@ -140,9 +140,9 @@ func (v *VDOM) GenStyleTemplate() {
 	for _, k := range keys {
 		sb.WriteString(IdCSSBlock(v.vd[k].ID, k))
 	}
-
 	CLog("%s", sb.String())
-	CLog("%s", v.vd["html"].jsValue.Get("outerHTML").String())
+
+	CLog("%s", v.vd["html"].jsValue.Get("innerHTML").String())
 }
 
 func TagCSSBlock(tagName string) string {
@@ -195,7 +195,7 @@ func NewApp(appTitle string) (*VDOM, error) {
 	// Spin up the event manager for domEvent which starts a go routine to monitor events.
 	v.newVDOMEvents()
 
-	// Create a callback function for a navigatoin hashchange
+	// Create a callback function for a navigation hashchange
 	html.Fulfillment = func(this js.Value, args []js.Value) interface{} {
 		CLog("%+v", args[0])
 		return nil
