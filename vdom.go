@@ -95,8 +95,10 @@ func (v *VDOM) GenStyleTemplate() {
 	sb := strings.Builder{}
 	keys := []string{}
 	classes := map[string]string{}
+	htmltags := map[string]interface{}{}
 
 	for k, v := range v.vd {
+		htmltags[v.Typ] = nil
 		l := v.jsValue.Get("classList")
 		if l.Type() != js.TypeUndefined {
 			cnt := l.Get("length").Int()
@@ -123,6 +125,10 @@ func (v *VDOM) GenStyleTemplate() {
 
 	}
 
+	for k := range htmltags {
+		sb.WriteString(TagCSSBlock(k))
+	}
+
 	for c, h := range cm {
 		sb.WriteString(ClassCSSBlock(c, h))
 	}
@@ -133,6 +139,12 @@ func (v *VDOM) GenStyleTemplate() {
 	}
 
 	CLog("%s", sb.String())
+}
+
+func TagCSSBlock(tagName string) string {
+	return fmt.Sprintf(`#%s{
+},
+`, tagName)
 }
 
 func ClassCSSBlock(name string, path string) string {
