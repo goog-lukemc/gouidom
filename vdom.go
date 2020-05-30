@@ -126,6 +126,9 @@ func (v *VDOM) GenStyleTemplate() {
 	}
 
 	for k := range htmltags {
+		if k == "<undefined>" {
+			continue
+		}
 		sb.WriteString(TagCSSBlock(k))
 	}
 
