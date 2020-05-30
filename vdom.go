@@ -143,7 +143,9 @@ func (v *VDOM) GenStyleTemplate() {
 
 func TagCSSBlock(tagName string) string {
 	return fmt.Sprintf(`#%s{
-},
+
+}
+
 `, tagName)
 }
 
