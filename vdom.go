@@ -91,7 +91,7 @@ func (v *VDOM) DumpVDOM() {
 	}
 }
 
-func (v *VDOM) GenStyleTemplate() {
+func (v *VDOM) GenStyleTemplate() string {
 	sb := strings.Builder{}
 	keys := []string{}
 	classes := map[string]string{}
@@ -140,9 +140,19 @@ func (v *VDOM) GenStyleTemplate() {
 	for _, k := range keys {
 		sb.WriteString(IdCSSBlock(v.vd[k].ID, k))
 	}
-	CLog("%s", sb.String())
+	return sb.String()
 
-	CLog("%s", v.vd["html"].jsValue.Get("documentElement").Get("outerHTML").String())
+}
+
+func (v *VDOM) GetAppStyle() string {
+	if ele, ok := v.vd["html/body/style"]; ok {
+		return ele.jsValue.Get("innerHTML").String()
+	}
+	return ""
+}
+
+func (v *VDOM) GetHTMLDocument() string {
+	return v.vd["html"].jsValue.Get("documentElement").Get("outerHTML").String()
 }
 
 func TagCSSBlock(tagName string) string {
