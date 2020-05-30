@@ -159,7 +159,7 @@ func (v *VDOM) GetHTMLDocument() string {
 }
 
 func TagCSSBlock(tagName string) string {
-	return fmt.Sprintf(`#%s{
+	return fmt.Sprintf(`%s{
 
 }
 
