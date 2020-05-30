@@ -142,7 +142,7 @@ func (v *VDOM) GenStyleTemplate() {
 	}
 	CLog("%s", sb.String())
 
-	CLog("%s", v.vd["html"].jsValue.Get("innerHTML").String())
+	CLog("%s", v.vd["html"].jsValue.Get("documentElement").Get("outerHTML").String())
 }
 
 func TagCSSBlock(tagName string) string {
