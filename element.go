@@ -191,6 +191,9 @@ type HTMLTagNames struct {
 	Article string
 	Pre     string
 	Code    string
+	Ul      string
+	Ol      string
+	Li      string
 }
 
 // JSMethodNames contrains the correct string property name for tested javascript methods
@@ -241,6 +244,9 @@ func init() {
 		Article: "article",
 		Pre:     "pre",
 		Code:    "code",
+		Ol:      "ol",
+		Ul:      "ul",
+		Li:      "li",
 	}
 
 	JSMethod = JSMethodNames{
